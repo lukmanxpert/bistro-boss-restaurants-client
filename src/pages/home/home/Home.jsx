@@ -1,7 +1,7 @@
 import React from 'react';
-import Banner from '../../../components/Banner/Banner';
-import Category from '../../../components/category/Category';
+import Banner from '../Banner/Banner';
 import SectionTitle from '../../../components/shared/SectionTitle';
+import Category from '../category/Category';
 
 const Home = () => {
     return (

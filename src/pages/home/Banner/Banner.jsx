@@ -1,10 +1,10 @@
 import React from 'react';
-import img1 from '../../assets/01.jpg';
-import img2 from '../../assets/02.jpg';
-import img3 from '../../assets/03.png';
-import img4 from '../../assets/04.jpg';
-import img5 from '../../assets/05.png';
-import img6 from '../../assets/06.png';
+import img2 from '../../../assets/01.jpg';
+import img3 from '../../../assets/02.jpg';
+import img1 from '../../../assets/03.png';
+import img4 from '../../../assets/04.jpg';
+import img5 from '../../../assets/05.png';
+import img6 from '../../../assets/06.png';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 const Banner = () => {
