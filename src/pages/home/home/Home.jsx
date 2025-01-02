@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../Banner/Banner';
 import SectionTitle from '../../../components/shared/SectionTitle';
 import Category from '../category/Category';
+import Featured from '../featured/Featured';
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
             <Banner></Banner>
             <SectionTitle subTitle={"---From 11:00am to 10:00pm---"} title={"ORDER ONLINE"}></SectionTitle>
             <Category></Category>
+            <Featured></Featured>
         </div>
     );
 };
