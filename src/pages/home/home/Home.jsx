@@ -4,6 +4,7 @@ import SectionTitle from '../../../components/shared/SectionTitle';
 import Category from '../category/Category';
 import Featured from '../featured/Featured';
 import About from '../about/About';
+import Menu from '../menu/Menus';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <SectionTitle subTitle={"---From 11:00am to 10:00pm---"} title={"ORDER ONLINE"}></SectionTitle>
             <Category></Category>
             <About></About>
+            <Menu></Menu>
             <Featured></Featured>
         </div>
     );
