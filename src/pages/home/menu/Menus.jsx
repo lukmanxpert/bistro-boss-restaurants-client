@@ -22,6 +22,9 @@ const Menus = () => {
                     popularMenu ? popularMenu.map(menu => <Menu key={menu._id} menu={menu}></Menu>) : <div><h1>No Data Found!!</h1></div>
                 }
             </div>
+            <div className='flex justify-center items-center my-6'>
+                <button className="btn btn-outline uppercase">View Full Menu</button>
+            </div>
         </div>
     );
 };
