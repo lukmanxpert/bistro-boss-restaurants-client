@@ -1,6 +1,6 @@
 import React from 'react';
 import SectionTitle from '../../../components/shared/SectionTitle';
-import featuredImg from '../../../assets/featured.jpg';
+import featuredImg from '../../../assets/home/featured.jpg';
 
 const Featured = () => {
     return (

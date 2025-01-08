@@ -3,11 +3,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import img1 from '../../../assets/slide1.jpg'
-import img2 from '../../../assets/slide2.jpg'
-import img3 from '../../../assets/slide3.jpg'
-import img4 from '../../../assets/slide4.jpg'
-import img5 from '../../../assets/slide5.jpg'
+import img1 from '../../../assets/home/slide1.jpg'
+import img2 from '../../../assets/home/slide2.jpg'
+import img3 from '../../../assets/home/slide3.jpg'
+import img4 from '../../../assets/home/slide4.jpg'
+import img5 from '../../../assets/home/slide5.jpg'
 const Category = () => {
     return (
         <div className='w-11/12 mx-auto mt-10'>

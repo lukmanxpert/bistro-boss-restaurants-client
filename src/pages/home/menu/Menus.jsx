@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/shared/SectionTitle';
 import { data } from 'react-router-dom';
 import Menu from '../../../components/shared/Menu';
+import Aos from 'aos';
+import "aos/dist/aos.css"
 
 const Menus = () => {
     const [popularMenu, setPopularMenus] = useState([])
+    useEffect(()=>{
+        Aos.init({})
+    },[])
     useEffect(() => {
         fetch("menu.json")
             .then(res => res.json())
@@ -15,7 +20,7 @@ const Menus = () => {
     }, [])
     console.log(popularMenu);
     return (
-        <div className='w-11/12 mx-auto mt-10'>
+        <div data-aos="zoom-in" className='w-11/12 mx-auto mt-10'>
             <SectionTitle title={"From Our Menu"} subTitle={"---Check it Out---"}></SectionTitle>
             <div className='grid md:grid-cols-2 gap-4'>
                 {

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './about.css'
+import Aos from 'aos';
+import "aos/dist/aos.css"
 const About = () => {
+    useEffect(() => {
+        Aos.init()
+    }, [])
     return (
-        <div className='w-11/12 mt-10 mx-auto about-section'>
+        <div data-aos="fade-up" className='w-11/12 mt-10 mx-auto about-section'>
             <div className='p-20'>
                 <div className='bg-white p-10 text-center'>
                     <h1 className='font-cinzel text-3xl uppercase'>Bistro Boss</h1>

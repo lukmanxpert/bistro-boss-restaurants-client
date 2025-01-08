@@ -1,12 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
     const links = <>
-        <li><a>Home</a></li>
-        <li><a>Contact Us</a></li>
+        <li><NavLink to={"/home"}>Home</NavLink></li>
+        <li><NavLink to={"/contact-us"}>Contact Us</NavLink></li>
+        <li><NavLink to={"/our-menu"}>Our Menu</NavLink></li>
     </>
     return (
-        <div className="navbar bg-black bg-opacity-30 text-white fixed z-10">
+        <div className="navbar bg-black bg-opacity-60 text-white fixed z-10">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -29,7 +31,7 @@ const Nav = () => {
                         {links}
                     </ul>
                 </div>
-                <button className="grid grid-cols-1 font-cinzel font-black text-3xl"><h1>Bistro Boss</h1> <h1>Restaurant</h1></button>
+                <button className="grid grid-cols-1 font-cinzel font-black text-xl"><h1>Bistro Boss</h1> <h1 className='text-lg'>Restaurant</h1></button>
             </div>
             <div className='navbar-end gap-4'>
                 <div className="navbar-end hidden lg:flex">
