@@ -3,3 +3,26 @@
   background-position: center;
   background-size: cover;
 }
+
+.dessert-section {
+  background-image: url("../../assets/menu/dessert-bg.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+
+.pizza-section {
+  background-image: url("../../assets/menu/pizza-bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.salad-section {
+  background-image: url("../../assets/menu/salad-bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.soups-section{
+  background-image: url("../../assets/menu/soup-bg.jpg");
+  background-position: center;
+  background-size: cover;
+}

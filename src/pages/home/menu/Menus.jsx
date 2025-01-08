@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/shared/SectionTitle';
-import { data } from 'react-router-dom';
 import Menu from '../../../components/shared/Menu';
 import Aos from 'aos';
 import "aos/dist/aos.css"
 
 const Menus = () => {
     const [popularMenu, setPopularMenus] = useState([])
-    useEffect(()=>{
+    useEffect(() => {
         Aos.init({})
-    },[])
+    }, [])
     useEffect(() => {
         fetch("menu.json")
             .then(res => res.json())
             .then(data => {
-                const menus = data.filter(menu => menu.category === "popular")
-                setPopularMenus(menus)
+                const popularMenus = data.filter(menu => menu.category === "popular")
+                setPopularMenus(popularMenus)
+
             })
     }, [])
     console.log(popularMenu);
