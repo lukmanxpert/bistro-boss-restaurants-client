@@ -6,7 +6,7 @@ const Card = ({ menu }) => {
             <figure>
                 <img className='w-full relative'
                     src={menu.image} />
-                    <span className='absolute top-0 right-5 text-white font-bold bg-black py-2 px-4 my-2 rounded-md'>${menu.price}</span>
+                    <span className='absolute top-0 right-5 text-white font-bold bg-[#1f2937] py-2 px-4 my-2 rounded-md'>${menu.price}</span>
             </figure>
             <div className="text-center">
                 <h2 className="text-2xl font-bold my-2">{menu.name}</h2>
