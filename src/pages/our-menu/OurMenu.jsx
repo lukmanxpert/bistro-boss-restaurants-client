@@ -5,7 +5,6 @@ import OurMenuTitle from '../../components/shared/OurMenuTitle';
 import Menu from '../../components/shared/Menu'
 import axios from 'axios';
 const OurMenu = () => {
-    const [menus, setMenus] = useState([])
     const [popularMenus, setPopularMenus] = useState([])
     const [dessertMenus, setDessertMenu] = useState([])
     const [pizzaMenus, setPizzaMenu] = useState([])
@@ -13,7 +12,6 @@ const OurMenu = () => {
     const [soupMenus, setSoupMenu] = useState([])
     useEffect(() => {
         axios.get(`http://localhost:9000/menus`).then(response => {
-            setMenus(response.data)
             const popularMenus = response.data.filter((menu) => menu.category === "popular");
             const dessertMenus = response.data.filter(menu => menu.category === "dessert")
             const pizzaMenus = response.data.filter(menu => menu.category === "pizza")

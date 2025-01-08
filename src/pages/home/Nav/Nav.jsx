@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 const Nav = () => {
     const links = <>
         <li><NavLink to={"/home"}>Home</NavLink></li>
-        <li><NavLink to={"/contact-us"}>Contact Us</NavLink></li>
         <li><NavLink to={"/our-menu"}>Our Menu</NavLink></li>
+        <li><NavLink to={"/our-shop"}>Our Shop</NavLink></li>
     </>
     return (
         <div className="navbar bg-black bg-opacity-60 text-white fixed z-10">
