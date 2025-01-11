@@ -1,14 +1,18 @@
 import React from 'react';
 import Nav from '../pages/home/Nav/Nav'
 import Footer from '../pages/home/Footer/Footer'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const MainLayout = () => {
+    const location = useLocation()
+    const pathname = location.pathname;
+    const disabledNavFooter = pathname.includes("login") || pathname.includes("register")
+
     return (
         <div className=''>
-            <Nav></Nav>
+            {disabledNavFooter || <Nav></Nav>}
             <Outlet></Outlet>
-            <Footer></Footer>
+            {disabledNavFooter || <Footer></Footer>}
         </div>
     );
 };

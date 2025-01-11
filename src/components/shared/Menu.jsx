@@ -1,6 +1,5 @@
 import React from 'react';
 const Menu = ({ menu }) => {
-    console.log(menu);
     return (
         <div className='flex my-4 items-center gap-4'>
             <div>

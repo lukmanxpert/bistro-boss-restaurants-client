@@ -1,12 +1,21 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Nav = () => {
+    const { user, logOut } = useContext(AuthContext)
     const links = <>
         <li><NavLink to={"/home"}>Home</NavLink></li>
         <li><NavLink to={"/our-menu"}>Our Menu</NavLink></li>
         <li><NavLink to={"/our-shop"}>Our Shop</NavLink></li>
     </>
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {
+            toast.success("Log Out Success")
+        })
+    }
     return (
         <div className="navbar bg-black bg-opacity-60 text-white fixed z-10">
             <div className="navbar-start">
@@ -40,10 +49,30 @@ const Nav = () => {
                     </ul>
                 </div>
                 <div className="">
-                    <a className="btn">Login</a>
+                    {user ? <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img
+                                    alt="Tailwind CSS Navbar component"
+                                    src={user.photoURL ? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
+                            </div>
+                        </div>
+                        <ul
+                            tabIndex={0}
+                            className="menu menu-sm dropdown-content bg-slate-900 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            <li>
+                                <a className="justify-between">
+                                    Profile
+                                </a>
+                            </li>
+                            <li><a>Settings</a></li>
+                            <li><button onClick={handleLogOut}>Logout</button></li>
+                        </ul>
+                    </div> : <Link to={"/login"} className="btn btn-outline text-white">Login</Link>}
                 </div>
             </div>
-        </div>
+            <Toaster></Toaster>
+        </div >
     );
 };
 

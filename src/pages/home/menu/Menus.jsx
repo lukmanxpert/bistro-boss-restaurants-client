@@ -18,7 +18,6 @@ const Menus = () => {
 
             })
     }, [])
-    console.log(popularMenu);
     return (
         <div data-aos="zoom-in" className='w-11/12 mx-auto mt-10'>
             <SectionTitle title={"From Our Menu"} subTitle={"---Check it Out---"}></SectionTitle>

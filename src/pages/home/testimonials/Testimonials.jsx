@@ -15,12 +15,11 @@ const Testimonials = () => {
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
-    console.log(reviews);
     return (
         <div>
             <SectionTitle subTitle={"---What Our Clients Say---"} title={"Testimonials"}></SectionTitle>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper flex justify-center items-center">
-                {reviews.map(review => <SwiperSlide>
+                {reviews.map((review, idx) => <SwiperSlide key={idx}>
                     <div className='flex justify-center items-center flex-col gap-4 px-16 text-center'>
                         <Rating
                             style={{ maxWidth: 180 }}
