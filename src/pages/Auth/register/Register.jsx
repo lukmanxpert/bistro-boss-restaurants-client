@@ -4,17 +4,25 @@ import img1 from '../../../assets/others/authentication1.png'
 import { AuthContext } from '../../../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 const Register = () => {
-    const { setUser, signUpUser } = useContext(AuthContext);
+    const { setUser, signUpUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate()
     const handleSignUp = (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
+        const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
         signUpUser(email, password)
             .then((userCredential) => {
                 setUser(userCredential.user)
+                updateUserProfile(name, photoURL)
+                    .then(() => {
+                        console.log("Profile Updated");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
                 toast.success("Sign Up Success")
                 navigate("/home")
             })
@@ -40,6 +48,12 @@ const Register = () => {
                                 <span className="label-text">Name</span>
                             </label>
                             <input type="text" name='name' placeholder="name" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Photo URL</span>
+                            </label>
+                            <input type="url" name='photoURL' placeholder="photo url" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

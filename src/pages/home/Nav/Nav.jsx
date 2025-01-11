@@ -8,6 +8,9 @@ const Nav = () => {
     const links = <>
         <li><NavLink to={"/home"}>Home</NavLink></li>
         <li><NavLink to={"/our-menu"}>Our Menu</NavLink></li>
+        {
+            user && <li><NavLink to={"/dashboard"}>Dashboard</NavLink></li>
+        }
         <li><NavLink to={"/our-shop"}>Our Shop</NavLink></li>
     </>
     const handleLogOut = () => {
