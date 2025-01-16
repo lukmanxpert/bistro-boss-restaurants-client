@@ -1,0 +1,9 @@
+.active {
+    color: orange;
+    font-weight: bold;
+    border-bottom: 2px solid orange;
+}
+li:hover{
+    color: coral;
+    font-weight: bold;
+}

@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import "./nav.css"
+import { FaShoppingCart } from 'react-icons/fa';
 
 const Nav = () => {
     const { user, logOut } = useContext(AuthContext)
@@ -12,12 +14,13 @@ const Nav = () => {
             user && <li><NavLink to={"/dashboard"}>Dashboard</NavLink></li>
         }
         <li><NavLink to={"/our-shop"}>Our Shop</NavLink></li>
+        <li><NavLink to={"/carts"} className={`flex md:relative`}><FaShoppingCart /> <span className='badge-secondary rounded-2xl text-xs md:absolute -top-4 -right-4'>+99</span></NavLink></li>
     </>
     const handleLogOut = () => {
         logOut()
-        .then(() => {
-            toast.success("Log Out Success")
-        })
+            .then(() => {
+                toast.success("Log Out Success")
+            })
     }
     return (
         <div className="navbar bg-black bg-opacity-60 text-white fixed z-10">
@@ -39,15 +42,15 @@ const Nav = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-slate-900 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         {links}
                     </ul>
                 </div>
-                <button className="grid grid-cols-1 font-cinzel font-black text-xl"><h1>Bistro Boss</h1> <h1 className='text-lg'>Restaurant</h1></button>
+                <Link to={"/home"} className="grid grid-cols-1 font-cinzel font-black text-xl"><h1>Bistro Boss</h1> <h1 className='text-lg'>Restaurant</h1></Link>
             </div>
             <div className='navbar-end gap-4'>
                 <div className="navbar-end hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu-horizontal items-center gap-4 px-1">
                         {links}
                     </ul>
                 </div>
@@ -71,7 +74,7 @@ const Nav = () => {
                             <li><a>Settings</a></li>
                             <li><button onClick={handleLogOut}>Logout</button></li>
                         </ul>
-                    </div> : <Link to={"/login"} className="btn btn-outline text-white">Login</Link>}
+                    </div> : <Link to={"/login"} className="btn btn-outline text-white mx-4">Login</Link>}
                 </div>
             </div>
             <Toaster></Toaster>

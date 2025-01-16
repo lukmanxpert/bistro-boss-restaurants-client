@@ -3,10 +3,11 @@ import './login.css'
 
 import img1 from "../../../assets/others/authentication1.png"
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 const Login = () => {
+    const { state: from } = useLocation()
     const navigate = useNavigate()
     const { loginUser, setUser } = useContext(AuthContext)
     useEffect(() => {
@@ -21,14 +22,14 @@ const Login = () => {
         console.log(email, password);
         if (validateCaptcha(captcha) == true) {
             loginUser(email, password)
-            .then((userCredential) => {
-                setUser(userCredential.user)
-                toast.success("Successfully Logged in")
-                navigate("/home")
-            })
-            .catch((err)=> {
-                toast.error(err.message)
-            })
+                .then((userCredential) => {
+                    setUser(userCredential.user)
+                    toast.success("Successfully Logged in")
+                    navigate(from ? from : "/home")
+                })
+                .catch((err) => {
+                    toast.error(err.message)
+                })
         }
 
         else {
