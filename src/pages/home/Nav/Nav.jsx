@@ -4,8 +4,10 @@ import { AuthContext } from '../../../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 import "./nav.css"
 import { FaShoppingCart } from 'react-icons/fa';
+import useCart from '../../../hooks/useCart';
 
 const Nav = () => {
+    const { cart } = useCart()
     const { user, logOut } = useContext(AuthContext)
     const links = <>
         <li><NavLink to={"/home"}>Home</NavLink></li>
@@ -14,7 +16,7 @@ const Nav = () => {
             user && <li><NavLink to={"/dashboard"}>Dashboard</NavLink></li>
         }
         <li><NavLink to={"/our-shop"}>Our Shop</NavLink></li>
-        <li><NavLink to={"/carts"} className={`flex md:relative`}><FaShoppingCart /> <span className='badge-secondary rounded-2xl text-xs md:absolute -top-4 -right-4'>+99</span></NavLink></li>
+        <li><NavLink to={"/dashboard/my-carts"} className={`flex md:relative`}><FaShoppingCart /> <span className='badge-secondary rounded-2xl text-xs md:absolute -top-4 -right-4 px-2'>{cart?.length}</span></NavLink></li>
     </>
     const handleLogOut = () => {
         logOut()

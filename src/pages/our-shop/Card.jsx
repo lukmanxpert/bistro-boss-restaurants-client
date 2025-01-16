@@ -3,11 +3,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 
 const Card = ({ menu }) => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
+    const { refetch } = useCart()
     const handleBuyNow = (menu) => {
         if (!user) {
             return Swal.fire({
@@ -42,6 +44,7 @@ const Card = ({ menu }) => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    refetch()
                 }
                 console.log(data.data)
             })

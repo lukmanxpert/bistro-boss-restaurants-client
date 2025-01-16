@@ -1,0 +1,9 @@
+.dashboard-links > li {
+    color: black;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.dashboard-links > li > a:hover {
+    color: white;
+    font-weight: bold;
+}
