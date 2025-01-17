@@ -3,9 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import img1 from '../../../assets/others/authentication1.png'
 import { AuthContext } from '../../../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import SocialLogIn from '../../../components/shared/SocialLogIn';
 const Register = () => {
     const { setUser, signUpUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
     const handleSignUp = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -15,16 +18,24 @@ const Register = () => {
         const password = form.password.value;
         signUpUser(email, password)
             .then((userCredential) => {
-                setUser(userCredential.user)
-                updateUserProfile(name, photoURL)
-                    .then(() => {
-                        console.log("Profile Updated");
+                axiosPublic.post("/users", {
+                    name: name,
+                    email: email
+                })
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            setUser(userCredential.user)
+                            updateUserProfile(name, photoURL)
+                                .then(() => {
+                                    console.log("Profile Updated");
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                })
+                            toast.success("Sign Up Success")
+                            navigate("/home")
+                        }
                     })
-                    .catch(err => {
-                        console.log(err);
-                    })
-                toast.success("Sign Up Success")
-                navigate("/home")
             })
             .catch((err) => {
                 console.log("ERROR", err);
@@ -71,6 +82,10 @@ const Register = () => {
                             <button className="btn btn-outline bg-[rgba(209,159,84,0.7)] text-white">Sign Up</button>
                             <Link to={"/login"} className='text-center my-2 text-[rgba(209,159,84)]'>Already registered? Go to log in</Link>
                         </div>
+                        <div>
+                            <p className='capitalize text-center'>or sign up with</p>
+                        </div>
+                        <SocialLogIn></SocialLogIn>
                     </form>
                 </div>
             </div>

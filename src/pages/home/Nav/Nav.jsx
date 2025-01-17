@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 import "./nav.css"
@@ -7,8 +7,9 @@ import { FaShoppingCart } from 'react-icons/fa';
 import useCart from '../../../hooks/useCart';
 
 const Nav = () => {
-    const { cart } = useCart()
+    const { cart, refetch } = useCart()
     const { user, logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
     const links = <>
         <li><NavLink to={"/home"}>Home</NavLink></li>
         <li><NavLink to={"/our-menu"}>Our Menu</NavLink></li>
@@ -16,12 +17,14 @@ const Nav = () => {
             user && <li><NavLink to={"/dashboard"}>Dashboard</NavLink></li>
         }
         <li><NavLink to={"/our-shop"}>Our Shop</NavLink></li>
-        <li><NavLink to={"/dashboard/my-carts"} className={`flex md:relative`}><FaShoppingCart /> <span className='badge-secondary rounded-2xl text-xs md:absolute -top-4 -right-4 px-2'>{cart?.length}</span></NavLink></li>
+        <li><NavLink to={`${user ? "/dashboard/my-carts" : "/login"}`} className={`flex md:relative`}><FaShoppingCart /> <span className='badge-secondary rounded-2xl text-xs md:absolute -top-4 -right-4 px-2'>{cart?.length}</span></NavLink></li>
     </>
     const handleLogOut = () => {
         logOut()
             .then(() => {
+                refetch()
                 toast.success("Log Out Success")
+                navigate("/")
             })
     }
     return (
@@ -62,7 +65,7 @@ const Nav = () => {
                             <div className="w-10 rounded-full">
                                 <img
                                     alt="Tailwind CSS Navbar component"
-                                    src={user.photoURL ? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
+                                    src={user?.photoURL ? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
                             </div>
                         </div>
                         <ul

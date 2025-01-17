@@ -6,6 +6,7 @@ import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-s
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import SocialLogIn from '../../../components/shared/SocialLogIn';
 const Login = () => {
     const { state: from } = useLocation()
     const navigate = useNavigate()
@@ -74,6 +75,10 @@ const Login = () => {
                             <button className="btn btn-outline bg-[rgba(209,159,84,0.7)] text-white">Sign In</button>
                             <Link to={"/register"} className='text-center my-2 text-[rgba(209,159,84)]'>New here? Create a New Account</Link>
                         </div>
+                        <div>
+                            <p className='capitalize text-center'>or sign in with</p>
+                        </div>
+                        <SocialLogIn></SocialLogIn>
                     </form>
                 </div>
             </div>
