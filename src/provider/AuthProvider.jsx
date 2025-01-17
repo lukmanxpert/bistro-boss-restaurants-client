@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebase/firebase.init';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
-import useCart from '../hooks/useCart';
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {

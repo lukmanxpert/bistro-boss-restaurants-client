@@ -10,7 +10,11 @@ import Dashboard from "../pages/dashboard/dashboard/Dashboard";
 import PrivateRoute from "../provider/PrivateRoute";
 import UserHome from "../pages/dashboard/Home/UserHome";
 import MyCarts from "../pages/dashboard/my-carts/MyCarts";
+import useAdmin from "../hooks/useAdmin";
+import AdminHome from "../pages/dashboard/admin-home/AdminHome";
+import AllUsers from "../pages/dashboard/all-users/AllUsers";
 
+const { isAdmin } = useAdmin()
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -48,7 +52,15 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard",
-                element: <Navigate to="/dashboard/user-home"></Navigate>
+                element: <Navigate to={`${isAdmin ? "/dashboard/admin-home" : "/dashboard/user-home"}`}></Navigate>
+            },
+            {
+                path: "/dashboard/admin-home",
+                element: <AdminHome></AdminHome>
+            },
+            {
+                path: "/dashboard/all-users",
+                element: <AllUsers></AllUsers>
             },
             {
                 path: "/dashboard/user-home",
