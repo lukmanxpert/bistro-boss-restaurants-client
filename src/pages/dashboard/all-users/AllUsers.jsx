@@ -4,16 +4,43 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { FaUsers } from 'react-icons/fa';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure()
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const result = await axiosSecure.get("/users")
             return result.data;
         }
     })
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/users/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        refetch()
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+    }
     console.log(users);
     return (
         <div>
@@ -46,7 +73,7 @@ const AllUsers = () => {
                                         <td><p>{user.email}</p></td>
                                         <td><button className='btn bg-[#D1A054] hover:bg-yellow-500 rounded-lg'><FaUsers className='text-xl text-white'></FaUsers></button></td>
                                         <th>
-                                            <button className="btn bg-red-500 hover:bg-red-700"><RiDeleteBinLine className='text-xl'></RiDeleteBinLine></button>
+                                            <button onClick={() => handleDelete(user._id)} className="btn bg-red-500 hover:bg-red-700"><RiDeleteBinLine className='text-xl'></RiDeleteBinLine></button>
                                         </th>
                                     </tr>)
                                 }
