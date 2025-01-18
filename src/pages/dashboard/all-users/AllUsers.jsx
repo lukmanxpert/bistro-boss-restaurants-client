@@ -41,6 +41,32 @@ const AllUsers = () => {
             }
         });
     }
+    const handleMakeAdmin = (id) => {
+        Swal.fire({
+            title: "Are you sure to make Admin?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Make Admin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/admin/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        refetch();
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+    }
     console.log(users);
     return (
         <div>
@@ -63,7 +89,7 @@ const AllUsers = () => {
                             <tbody>
                                 {/* row 1 */}
                                 {
-                                    users && users.map((user, index) => <tr>
+                                    users && users.map((user, index) => <tr key={index}>
                                         <th>{index + 1}</th>
                                         <td>
                                             <div className="flex items-center gap-3">
@@ -71,9 +97,12 @@ const AllUsers = () => {
                                             </div>
                                         </td>
                                         <td><p>{user.email}</p></td>
-                                        <td><button className='btn bg-[#D1A054] hover:bg-yellow-500 rounded-lg'><FaUsers className='text-xl text-white'></FaUsers></button></td>
+                                        <td><button disabled={user?.role === "admin" ? true : false} onClick={() => handleMakeAdmin(user._id)} className='btn bg-[#D1A054] hover:bg-yellow-500 rounded-lg'><FaUsers className='text-xl text-white'></FaUsers></button></td>
                                         <th>
-                                            <button onClick={() => handleDelete(user._id)} className="btn bg-red-500 hover:bg-red-700"><RiDeleteBinLine className='text-xl'></RiDeleteBinLine></button>
+                                            {
+                                                user?.role === "admin" ? "Admin" : <button onClick={() => handleDelete(user._id)} className="btn bg-red-500 hover:bg-red-700"><RiDeleteBinLine className='text-xl'></RiDeleteBinLine></button>
+                                            }
+
                                         </th>
                                     </tr>)
                                 }
